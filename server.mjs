@@ -1,10 +1,11 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors'
-
+import ConnectDB from './config/db.mjs';
 
 const app = express();
 
+ConnectDB()
 
 const corsOptions ={
     origin :"*",
@@ -20,7 +21,9 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended:true}));
 
-
+app.get('/',(req,res)=>{
+    res.json({msg:"Hello from Server"})
+})
 
 
 const PORT = process.env.PORT || 9000;
