@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors'
-import ConnectDB from './config/db.mjs';
-
+import ConnectDB from './config/db.js';
+import router from './route/users.js';
 const app = express();
 
 ConnectDB()
@@ -21,9 +21,9 @@ app.use(bodyParser.json());
 
 app.use(bodyParser.urlencoded({extended:true}));
 
-app.get('/',(req,res)=>{
-    res.json({msg:"Hello from Server"})
-})
+
+// Api Routes
+app.use('/api/users',router);
 
 
 const PORT = process.env.PORT || 9000;
