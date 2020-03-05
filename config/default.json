@@ -1,3 +1,4 @@
 {
-    "mongoUri":"mongodb+srv://zohaib:Zohaibjarral08@cluster0-t87eg.mongodb.net/client-project?retryWrites=true&w=majority"
+    "mongoUri":"mongodb+srv://zohaib:Zohaibjarral08@cluster0-t87eg.mongodb.net/client-project?retryWrites=true&w=majority",
+    "JwtSecret":"asdfjklhfjskhwev1232rdmfnvjhtwlfv"
 }

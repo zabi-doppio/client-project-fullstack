@@ -2,8 +2,7 @@ import express from 'express';
 import bcrypt from 'bcryptjs';
 import config from 'config';
 import jwt from 'jsonwebtoken';
-import {check} from 'express-validator/check';
-import {validationResult} from 'express-validator';
+const { check, validationResult } = require('express-validator');
 
 const router = express.Router();
 
@@ -59,5 +58,57 @@ password
         res.status(500).send('Server Error')
     }
 })
+
+
+
+// Logining the User
+
+router.post('/login',[
+    check('email','Please Include a Registered Email').isEmail(),
+    check('password','Password is Required').exists()
+],
+async(req,res)=>{
+    // Checking for errors
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(400).json({
+            errors:errors.array()
+        })
+    }
+    const {email,password} = req.body;
+    try {
+        // Checking if User email Exists
+        let user = await User.findOne({email});
+        // If User email not found
+        if (!user) {
+            return res.status(400).json({msg:"Incorrect Credentials please try again"})
+        }
+        // Checking If User Password matches with Stored Password
+        const isMatch = await bcrypt.compare(password,user.password);
+
+        // if Password mismatch then following will occurs
+        if (!isMatch) {
+            return res.status(400).json({msg:"Try Again with Correct Credentails"})
+        }
+
+        const payload = {
+            user:{
+                id:user.id
+            }
+        }
+
+        jwt.sign(payload,config.get('JwtSecret'),{
+            expiresIn:360000
+        },(err,token)=>{
+            if (err) throw err;
+            res.json({token});
+        })
+
+    } catch (error) {
+console.log(error.message);
+res.status(500).send("Server Error")
+    }
+}
+)
 
 export default router;
