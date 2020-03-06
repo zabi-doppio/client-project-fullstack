@@ -2,11 +2,13 @@ import express from 'express';
 const { check, validationResult } = require('express-validator');
 const router = express.Router();
 
+
 // Bringing Client Model
 import Client from '../Model/Client.js';
+import getClient from '../middleware/singleClient';
 
 // Creating Client
-// Routes Post api/users
+// Routes Post api/clients
 // Public Route
 
 router.post('/'
@@ -119,7 +121,7 @@ async(req,res)=>{
     }
 })
 
-
+// Getting all The Clients
 router.get('/',async(req,res)=>{
     try {
         const clients = await Client.find();
@@ -130,5 +132,21 @@ router.get('/',async(req,res)=>{
     }
 })
 
+// Get Single Client
+
+router.get('/:id',getClient,(req,res)=>{
+res.json(res.client);
+})
+
+
+// Updating Single Client
+router.put("/:id",getClient,async(req,res)=>{
+    try {
+        const updatedClient = await res.client.set(req.body);
+        res.json(updatedClient)
+    } catch (error) {
+        res.status(400).send(error.message);
+    }
+})
 
 export default router;
