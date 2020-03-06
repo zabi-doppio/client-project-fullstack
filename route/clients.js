@@ -114,11 +114,21 @@ async(req,res)=>{
         console.log("Newclient",newClient)
         res.status(201).send(newClient);
     } catch (error) {
-        console.log(error.message)
-        res.status(500).send('Server Error')
+        console.log(error.message);
+        res.status(500).send(error.message);
     }
 })
 
+
+router.get('/',async(req,res)=>{
+    try {
+        const clients = await Client.find();
+        res.json(clients);
+    } catch (error) {
+        console.log(error.message);
+        res.status(500).send(error.message)
+    }
+})
 
 
 export default router;
