@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React,{Component}from 'react';
+import {Link,withRouter} from 'react-router-dom';
 import {
   Collapse,
   Navbar,
@@ -6,37 +7,73 @@ import {
   NavbarBrand,
   Nav,
   NavItem,
-  NavLink,
+  
  
 } from 'reactstrap';
 
-const NavBar= (props) => {
-  const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = () => setIsOpen(!isOpen);
+
+
+
+const NavBar =()=>  {
+
+
+  const AuthLink = ()=>{
+return(
+    <ul className="list">
+       <li>
+           <Link onClick={logout} className="link" to="/">Logout</Link>
+        </li>
+        <li>
+          <Link className="link" to="/clients">Clients</Link>
+        </li>
+       
+      </ul>
+)
+  }
+    
+    
+    const GuestLink =()=>(
+     
+        <ul className="list">
+      <li>
+          <Link className="link" to="/">Login</Link>
+      </li>
+    </ul>
+      
+    )
+
+
+  const isAuthenticated = localStorage.getItem('token')
+  
+
+  const logout = ()=>{
+   localStorage.removeItem('token')
+ }
+
+
 
   return (
     <div>
       <Navbar color="light" light expand="md">
         <NavbarBrand href="/">DoppioZero Clients</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
+        <NavbarToggler 
+        // onClick={toggle}//
+         />
+        <Collapse 
+         navbar>
           <Nav className="ml-auto" navbar>
-            <NavItem>
-              <NavLink href="/clients">Clients</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/">Login</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/Logout">Logout</NavLink>
-            </NavItem>
+       {
+         isAuthenticated ? <AuthLink/> : <GuestLink/>
+       }
           </Nav>
          
         </Collapse>
       </Navbar>
     </div>
   );
+
+  
 }
 
-export default NavBar;
+export default withRouter(NavBar);

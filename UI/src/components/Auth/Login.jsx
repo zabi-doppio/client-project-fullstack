@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import {  NavLink} from 'reactstrap';
 import axios from 'axios';
+import { Redirect } from 'react-router-dom';
 export default class Login extends Component {
 
     state={
         email:"",
         password:"",
-        Usertoken:""
+       
     }
     
     handleChange=(e)=>{
@@ -23,8 +24,11 @@ export default class Login extends Component {
     
     axios.post('http://localhost:9000/api/users/login',userData)
     .then(res=>{
-        console.log(res.data.token)
+        let userToken = res.data.token
+        localStorage.setItem('token', userToken)
+        this.props.history.push('/clients')
     })
+   
     }
 
     render() {
