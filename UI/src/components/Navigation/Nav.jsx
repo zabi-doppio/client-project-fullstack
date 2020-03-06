@@ -7,11 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink,
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavbarText
+ 
 } from 'reactstrap';
 
 const NavBar= (props) => {
@@ -27,10 +23,10 @@ const NavBar= (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ml-auto" navbar>
             <NavItem>
-              <NavLink href="/components/">Clients</NavLink>
+              <NavLink href="/clients">Clients</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/Login">Login</NavLink>
+              <NavLink href="/">Login</NavLink>
             </NavItem>
             <NavItem>
               <NavLink href="/Logout">Logout</NavLink>
