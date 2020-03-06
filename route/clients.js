@@ -110,13 +110,10 @@ async(req,res)=>{
         notes
     })
     try {
-       
-        console.log("client",client)
         const newClient =  await client.save();
-        console.log("Newclient",newClient)
         res.status(201).send(newClient);
     } catch (error) {
-        console.log(error.message);
+       
         res.status(500).send(error.message);
     }
 })
@@ -127,7 +124,7 @@ router.get('/',async(req,res)=>{
         const clients = await Client.find();
         res.json(clients);
     } catch (error) {
-        console.log(error.message);
+        
         res.status(500).send(error.message)
     }
 })

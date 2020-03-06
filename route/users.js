@@ -54,7 +54,6 @@ password
         res.send(user)
 
     } catch (error) {
-        console.log(error.message);
         res.status(500).send('Server Error')
     }
 })
@@ -105,7 +104,7 @@ async(req,res)=>{
         })
 
     } catch (error) {
-console.log(error.message);
+
 res.status(500).send("Server Error")
     }
 }
