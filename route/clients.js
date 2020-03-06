@@ -149,4 +149,14 @@ router.put("/:id",getClient,async(req,res)=>{
     }
 })
 
+// Deleting Single Client
+router.delete('/:id',getClient,async(req,res)=>{
+    try {
+        await res.client.deleteOne();
+        res.json({message:"User has been Deleted"})
+    } catch (error) {
+        res.status(500).send(error.message)
+    }
+})
+
 export default router;
