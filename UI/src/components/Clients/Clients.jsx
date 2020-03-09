@@ -128,8 +128,8 @@ export default class Clients extends Component {
                                              <Link
 
                                               to={{
-                                                pathname: `/projects/` + data._id,
-                                                myCustomProps: this.props.proj   
+                                                pathname: `/id` ,
+                                                myCustomProps: data._id   
                                               }}
                                               
                                               className="addLink text-success" style={{

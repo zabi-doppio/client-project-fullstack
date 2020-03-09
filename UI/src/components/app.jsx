@@ -33,7 +33,7 @@ export default class App extends React.Component{
                     <Privateroute exact path="/clients" component={Clients}/>
                     <Privateroute exact path="/add-client" component={AddClient}/>
                     <Privateroute exact path="/update-client" component={UpdateClient}/>
-                    <Privateroute exact path="/clients/:id" component={ClientDetail}/>
+                    <Privateroute exact path="/id" component={ClientDetail}/>
                     <Route path="*" component={Page404} />
                 </Switch>
                 
