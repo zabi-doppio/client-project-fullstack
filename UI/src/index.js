@@ -1,12 +1,12 @@
 import React from 'react';
 import Reactdom from 'react-dom';
 import App from './components/app.jsx';
-import {BrowserRouter as Router} from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom'
 import '../node_modules/bootstrap/scss/bootstrap.scss'
 
 Reactdom.render(
-    <Router>
+    <BrowserRouter>
     <App/>
-    </Router>
+    </BrowserRouter>
 
 , document.getElementById("app"))

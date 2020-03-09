@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 import { Pagination, PaginationItem, PaginationLink, Table,Button } from "reactstrap";
+import {Link} from 'react-router-dom';
 export default class Clients extends Component {
 
 
@@ -60,7 +61,12 @@ export default class Clients extends Component {
     float:'right',
     marginRight:'1rem'
 }}>
-                    <Button  size="md" outline color="primary mt-1 mb-1">Add Client</Button>
+    <Button  size="md" outline color="primary mt-1 mb-1">
+    <Link to='/add-client' className="addLink" style={{
+        textDecoration:'none'
+    }}>Add Client</Link>
+    </Button>
+                   
                 </div>
                 <Table className='bg-transparent  text-black text-capitalize' >
                     <thead>
@@ -118,19 +124,25 @@ export default class Clients extends Component {
 
                                     </td>
                                     <td>
-                                        <Button outline className='mr-1' color='success' onClick={
-                                            ()=>{
-                                                console.log('View has been clicked')
-                                            }
-                                        }>
-                                            view
+                                    <Button  size="md" outline color="success mr-1">
+                                             <Link
+
+                                              to={{
+                                                pathname: `/projects/` + data._id,
+                                                myCustomProps: this.props.proj   
+                                              }}
+                                              
+                                              className="addLink text-success" style={{
+                                            textDecoration:'none',
+                                           
+                                        }}>View
+                                        </Link>
                                         </Button>
-                                        <Button outline className='mr-1' color='warning' onClick={
-                                            ()=>{
-                                                console.log('Update has been clicked')
-                                            }
-                                        }>
-                                            update
+                                        <Button  size="md" outline color="warning mr-1">
+                                             <Link to='/update-client' className="addLink text-warning" style={{
+                                            textDecoration:'none',
+                                           
+                                        }}>Update</Link>
                                         </Button>
                                        <Button outline className='mr-1' color="danger" onClick={
                                             ()=>{

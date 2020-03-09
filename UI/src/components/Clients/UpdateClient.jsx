@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 import {Button} from 'reactstrap';
-import axios from 'axios';
-class AddClient extends Component {
+class UpdateClient extends Component {
     state={
         companyName:'',
         type:0,
-        typePrice:0,
+        payment:0,
         partitaIva:'',
         codiceFiscale:'',
         name:'',
@@ -17,43 +16,10 @@ class AddClient extends Component {
         country:'',
         phone:0,
         email:'',
-        domains:[''],
+        domains:[],
         notes:''
 
     }
-
-
-
-    handleChange=(e)=>{
-        this.setState({
-            [e.target.name]:e.target.value
-        })
-    }
-
-    handleSubmit=(e)=>{
-        e.preventDefault();
-const {companyName,type,typePrice,
-        partitaIva,codiceFiscale,name,
-        surname,address,city,zip,
-        state,country,phone,email,
-       notes} = this.state;
-        const newClient = {
-           companyName,type,typePrice,
-           partitaIva,codiceFiscale,name,
-           surname,address,city,zip,
-           state,country,phone,email,
-           domains:[...this.state.domains]
-           ,notes
-        }
-        axios.post('http://localhost:9000/api/clients',newClient)
-        .then(res=>{
-            console.log(res.data)
-            this.props.history.push('/clients')
-        })
-        
-    }
-
-
     render() {
         return (
             <div>
@@ -63,7 +29,7 @@ const {companyName,type,typePrice,
                 }}>
 
                     <form onSubmit={this.handleSubmit}>
-                        <h3 className="text-center">Add a New Client</h3>
+                        <h3 className="text-center">Edit Client</h3>
                             <div className="container">
                                 <div className="row">
                                     <div className="col-md-6">
@@ -75,7 +41,7 @@ const {companyName,type,typePrice,
                         <div className="col-md-6">
                         <div className="form-group">
                             <label htmlFor="FormControlSelect">Type</label>
-                            <select onChange={this.handleChange} name='type' className="form-control" id="FormControlSelect">
+                            <select name='type' className="form-control" id="FormControlSelect">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -87,7 +53,7 @@ const {companyName,type,typePrice,
                             <div className="col-md-6">
                                 <div className="form-group">
                             <label htmlFor="FormControlSelect">Payment Type</label>
-                            <select onChange={this.handleChange} name='typePrice' className="form-control" id="FormControlSelect">
+                            <select name='payment' className="form-control" id="FormControlSelect">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -183,7 +149,8 @@ const {companyName,type,typePrice,
     
                         <div className="form-group">
                             <label htmlFor="FormControlTextarea">Notes</label>
-                            <textarea onChange={this.handleChange} name="notes" className="form-control" id="FormControlTextarea" placeholder="Enter your Note" rows="3"></textarea>
+                            <textarea name="notes" className="form-control" id="FormControlTextarea" rows="3" placeholder="Enter Your Note here
+                            "></textarea>
                         </div>
                          </div>
                         </div>
@@ -197,4 +164,4 @@ const {companyName,type,typePrice,
         )
     }
 }
-export default AddClient;
+export default UpdateClient;
