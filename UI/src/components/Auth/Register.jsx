@@ -31,8 +31,8 @@ import axios from 'axios';
 
             <div className="auth-wrapper" 
             style={{
-                marginTop: "6.1rem",
-                    marginBottom: "3.5rem",
+                marginTop: "9.1rem",
+                   
             }}
             >
                 <div className="mt-1 auth-inner" style={{

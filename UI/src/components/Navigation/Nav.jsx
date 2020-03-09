@@ -11,6 +11,7 @@ import {
  
 } from 'reactstrap';
 
+import Logo from '../../img/logo.svg'
 
 
 
@@ -56,7 +57,11 @@ return(
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">DoppioZero Clients</NavbarBrand>
+        <NavbarBrand href="/">
+        <img style={{
+          backgroundColor: 'black'
+        }} height='40px' src={Logo} alt="" />
+        </NavbarBrand>
         <NavbarToggler 
         // onClick={toggle}//
          />

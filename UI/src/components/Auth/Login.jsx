@@ -34,10 +34,7 @@ export default class Login extends Component {
     render() {
         return (
             <div className="auth-wrapper" style={{
-                marginTop: "6.1rem",
-                marginBottom: "3.5rem",
-
-
+                marginTop: "9.1rem",
             }} >
                 <div className="auth-inner" style={{
                     opacity: "0.7"
