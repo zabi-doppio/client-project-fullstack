@@ -48,6 +48,16 @@ export default class Clients extends Component {
 
     }
 
+    delete(_id){
+axios.delete(`http://localhost:9000/api/clients/${_id}`)
+.then(res=>{
+this.props.history.push('/clients')
+this.forceUpdate()
+})
+
+
+    }
+
     render() {
 
         const { currentPage } = this.state;
@@ -145,9 +155,7 @@ export default class Clients extends Component {
                                         }}>Update</Link>
                                         </Button>
                                        <Button outline className='mr-1' color="danger" onClick={
-                                            ()=>{
-                                                console.log('Delete has been clicked')
-                                            }
+                                            this.delete.bind(this,data._id)
                                         }>
                                            x
                                        </Button>
