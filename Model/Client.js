@@ -65,6 +65,11 @@ const ClientSchema = new Schema({
     notes:{
         type:String,
         required:true
+    },
+    createdByID:{type:Schema.Types.ObjectId,ref:'User'},
+    date:{
+        type:Date,
+        default:Date.now
     }
 })
 
